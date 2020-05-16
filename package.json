@@ -1,0 +1,19 @@
+{
+  "name": "remember-to-eat",
+  "description": "My personal meal/calorie/protein tracker",
+  "private": true,
+  "keywords": [],
+  "version": "1.0.0-pre",
+  "author": "Domenic Denicola <d@domenic.me> (https://domenic.me/)",
+  "license": "WTFPL",
+  "scripts": {
+    "lint": "eslint \"www/**/*.mjs\"",
+    "start": "serve www"
+  },
+  "devDependencies": {
+    "eslint": "^7.0.0"
+  },
+  "dependencies": {
+    "serve": "^11.3.0"
+  }
+}

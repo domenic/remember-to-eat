@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="utf-8">
+<title>Remember to Eat</title>
+<link rel="stylesheet" href="styles.css">
+
+<script type="module" src="lib/app.mjs"></script>
+
+<div id="current" class="panel">
+  <h2>Today</h2>
+
+  <div class="container">
+    <p class="nutrient">
+      <meter id="energy-meter"></meter>
+      <span class="label">Energy</span>
+      <span class="value">
+        <span class="number kcal" id="current-energy">0</span>
+        <span class="unit">kcal</span>
+      </span>
+    </p>
+
+    <p class="nutrient">
+      <meter id="protein-meter"></meter>
+      <span class="label">Protein</span>
+      <span class="value">
+        <span class="number mg" id="current-protein">0</span>
+        <span class="unit">mg</span>
+      </span>
+    </p>
+  </div>
+</div>
+
+<div id="targets" class="panel">
+  <h2>Targets</h2>
+
+  <div class="container">
+    <label class="nutrient">
+      <span class="label">Energy</span>
+      <span class="value">
+        <input class="number kcal" type="number" value="2000" id="target-energy">
+        <span class="unit">kcal</span>
+      </span>
+    </label>
+
+    <label class="nutrient">
+      <span class="label">Protein</span>
+      <span class="value">
+        <input class="number mg" type="number" value="160" id="target-protein">
+        <span class="unit">mg</span>
+      </span>
+    </label>
+
+    <label class="time">
+      Wake up
+      <input type="time" id="wake-up-time" value="09:00">
+    </label>
+
+    <label class="time">
+      Sleep
+      <input type="time" id="sleep-time" value="00:30">
+    </label>
+  </div>
+</div>
+
+<div id="food">
+  <button>
+    <img src="images/soylent-original.jpg" width="1500" height="1500" alt="">
+    <p class="name">Soylent Original</p>
+    <ul class="stats">
+      <li><span class="number" data-nutrient="energy">400</span><span class="unit">kcal</span></li>
+      <li><span class="number" data-nutrient="protein">20</span><span class="unit">g</span></li>
+    </ul>
+  </button>
+
+  <button>
+    <img src="images/soylent-bridge.jpg" width="1500" height="1500" alt="">
+    <p class="name">Soylent Bridge</p>
+    <ul class="stats">
+      <li><span class="number" data-nutrient="energy">180</span><span class="unit">kcal</span></li>
+      <li><span class="number" data-nutrient="protein">15</span><span class="unit">g</span></li>
+    </ul>
+  </button>
+
+  <button>
+    <img src="images/pea-protein.jpg" width="461" height="697" alt="">
+    <p class="name">Pea Protein</p>
+    <ul class="stats">
+      <li><span class="number" data-nutrient="energy">120</span><span class="unit">kcal</span></li>
+      <li><span class="number" data-nutrient="protein">24</span><span class="unit">g</span></li>
+    </ul>
+  </button>
+</div>
