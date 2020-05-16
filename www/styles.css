@@ -157,32 +157,3 @@ body {
 #food {
   grid-area: food;
 }
-
-#food button {
-  vertical-align: middle;
-  width: 400px;
-  height: 500px;
-  background: white;
-  border: 1px solid gray;
-}
-
-#food button ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-}
-
-#food button li {
-  display: inline;
-  margin: 0;
-  padding: 0;
-}
-
-#food button li:not(:last-of-type)::after {
-  content: " / ";
-}
-
-#food button img {
-  width: 75%;
-  height: auto;
-}

@@ -5,6 +5,7 @@
 <link rel="stylesheet" href="styles.css">
 
 <script type="module" src="lib/app.mjs"></script>
+<script type="module" src="lib/components/food-button.mjs"></script>
 
 <div id="current" class="panel">
   <h2>Today</h2>
@@ -63,30 +64,21 @@
 </div>
 
 <div id="food">
-  <button>
-    <img src="images/soylent-original.jpg" width="1500" height="1500" alt="">
-    <p class="name">Soylent Original</p>
-    <ul class="stats">
-      <li><span class="number" data-nutrient="energy">400</span><span class="unit">kcal</span></li>
-      <li><span class="number" data-nutrient="protein">20</span><span class="unit">g</span></li>
-    </ul>
-  </button>
+  <food-button imagesrc="images/soylent-original.jpg"
+               imagewidth="1500" imageheight="1500"
+               name="Soylent Original"
+               energy="400"
+               protein="20"></food-button>
 
-  <button>
-    <img src="images/soylent-bridge.jpg" width="1500" height="1500" alt="">
-    <p class="name">Soylent Bridge</p>
-    <ul class="stats">
-      <li><span class="number" data-nutrient="energy">180</span><span class="unit">kcal</span></li>
-      <li><span class="number" data-nutrient="protein">15</span><span class="unit">g</span></li>
-    </ul>
-  </button>
+  <food-button imagesrc="images/soylent-bridge.jpg"
+               imagewidth="1500" imageheight="1500"
+               name="Soylent Bridge"
+               energy="180"
+               protein="15"></food-button>
 
-  <button>
-    <img src="images/pea-protein.jpg" width="461" height="697" alt="">
-    <p class="name">Pea Protein</p>
-    <ul class="stats">
-      <li><span class="number" data-nutrient="energy">120</span><span class="unit">kcal</span></li>
-      <li><span class="number" data-nutrient="protein">24</span><span class="unit">g</span></li>
-    </ul>
-  </button>
+  <food-button imagesrc="images/pea-protein.jpg"
+               imagewidth="461" imageheight="697"
+               name="Pea Protein"
+               energy="120"
+               protein="24"></food-button>
 </div>
