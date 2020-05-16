@@ -18,7 +18,6 @@
 
 ## Styling
 
-- Fix the pea protein image size issue. Container div might work (to avoid editing the images).
 - Style the buttons better. Challenge is how to make something clearly a button with a forced-white background.
 - Dark mode!? (Forced white backgrounds are a problem, again.)
 - Mobile friendly.

@@ -9,8 +9,9 @@ button {
 }
 
 img {
-  width: 75%;
-  height: auto;
+  width: 300px;
+  height: 300px;
+  object-fit: contain;
 }
 
 #stats {
