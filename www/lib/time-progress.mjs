@@ -9,7 +9,7 @@ export default (wakeUpTimeValueAsDate, sleepTimeValueAsDate) => {
   const nowOffset = getNowOffset(offsets.wakeUp);
 
   return Math.min(1, (nowOffset - offsets.wakeUp) / (offsets.sleep - offsets.wakeUp));
-}
+};
 
 // Returns the number of milliseconds past midnight for the wake-up time and sleep time.
 function getTimeOffsets(wakeUpTimeValueAsDate, sleepTimeValueAsDate) {

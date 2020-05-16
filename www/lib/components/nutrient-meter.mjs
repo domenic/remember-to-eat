@@ -34,7 +34,11 @@ meter {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: conic-gradient(var(--optimal-background-color) calc(var(--optimum-percent) * 1%), 0, var(--background-color));
+  background: conic-gradient(
+    var(--optimal-background-color) calc(var(--optimum-percent) * 1%),
+    0,
+    var(--background-color)
+  );
   border-radius: 50%;
 }
 
