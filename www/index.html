@@ -4,30 +4,16 @@
 <title>Remember to Eat</title>
 <link rel="stylesheet" href="styles.css">
 
-<script type="module" src="lib/app.mjs"></script>
+<script type="module" src="lib/components/nutrient-meter.mjs"></script>
 <script type="module" src="lib/components/food-button.mjs"></script>
+<script type="module" src="lib/app.mjs"></script>
 
 <div id="current" class="panel">
   <h2>Today</h2>
 
   <div class="container">
-    <p class="nutrient">
-      <meter id="energy-meter"></meter>
-      <span class="label">Energy</span>
-      <span class="value">
-        <span class="number kcal" id="current-energy">0</span>
-        <span class="unit">kcal</span>
-      </span>
-    </p>
-
-    <p class="nutrient">
-      <meter id="protein-meter"></meter>
-      <span class="label">Protein</span>
-      <span class="value">
-        <span class="number mg" id="current-protein">0</span>
-        <span class="unit">mg</span>
-      </span>
-    </p>
+    <nutrient-meter name="Energy" unit="kcal"></nutrient-meter>
+    <nutrient-meter name="Protein" unit="mg"></nutrient-meter>
   </div>
 </div>
 

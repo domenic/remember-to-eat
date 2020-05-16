@@ -2,14 +2,12 @@ const ONE_MINUTE = 60 * 1000;
 const ONE_DAY = 24 * 60 * ONE_MINUTE;
 
 export default class ViewModel {
-  #currentEnergy = document.querySelector('#current-energy');
-  #currentProtein = document.querySelector('#current-protein');
   #targetEnergy = document.querySelector('#target-energy');
   #targetProtein = document.querySelector('#target-protein');
-  #energyMeter = document.querySelector('#energy-meter');
-  #proteinMeter = document.querySelector('#protein-meter');
   #wakeUpTime = document.querySelector('#wake-up-time');
   #sleepTime = document.querySelector('#sleep-time');
+  #energyMeter = document.querySelector('nutrient-meter[name="Energy"]');
+  #proteinMeter = document.querySelector('nutrient-meter[name="Protein"]');
 
   constructor() {
     this.#syncBothMeters();
@@ -22,22 +20,6 @@ export default class ViewModel {
     setInterval(() => this.#syncBothMeters(), ONE_MINUTE);
   }
 
-  get currentEnergy() {
-    return Number(this.#currentEnergy.textContent);
-  }
-  set currentEnergy(v) {
-    this.#currentEnergy.textContent = v;
-    this.#syncEnergyMeter();
-  }
-
-  get currentProtein() {
-    return Number(this.#currentProtein.textContent);
-  }
-  set currentProtein(v) {
-    this.#currentProtein.textContent = v;
-    this.#syncProteinMeter();
-  }
-
   get targetEnergy() {
     return this.#targetEnergy.valueAsNumber;
   }
@@ -47,36 +29,22 @@ export default class ViewModel {
   }
 
   #syncEnergyMeter(timeProgress = this.#getTimeProgress()) {
-    this.#energyMeter.max = this.targetEnergy;
-    this.#energyMeter.value = this.currentEnergy;
-
-    const percent = this.currentEnergy / this.targetEnergy * 100;
-    this.#energyMeter.style.setProperty('--percent', percent.toFixed(2));
-    this.#energyMeter.classList.toggle('full', percent >= 100);
+    this.#energyMeter.dayTarget = this.targetEnergy;
 
     if (!timeProgress) {
-      this.#energyMeter.removeAttribute('optimum');
-      this.#energyMeter.style.removeProperty('--optimum-percent');
+      this.#energyMeter.nowTarget = null;
     } else {
-      this.#energyMeter.optimum = Math.round(this.targetEnergy * timeProgress);
-      this.#energyMeter.style.setProperty('--optimum-percent', (timeProgress * 100).toFixed(2));
+      this.#energyMeter.nowTarget = Math.round(this.targetEnergy * timeProgress);
     }
   }
 
   #syncProteinMeter(timeProgress = this.#getTimeProgress()) {
-    this.#proteinMeter.max = this.targetProtein;
-    this.#proteinMeter.value = this.currentProtein;
-
-    const percent = this.currentProtein / this.targetProtein * 100;
-    this.#proteinMeter.style.setProperty('--percent', percent.toFixed(2));
-    this.#proteinMeter.classList.toggle('full', percent >= 100);
+    this.#proteinMeter.dayTarget = this.targetProtein;
 
     if (!timeProgress) {
-      this.#proteinMeter.removeAttribute('optimum');
-      this.#proteinMeter.style.removeProperty('--optimum-percent');
+      this.#proteinMeter.nowTarget = null;
     } else {
-      this.#proteinMeter.optimum = Math.round(this.targetProtein * timeProgress);
-      this.#proteinMeter.style.setProperty('--optimum-percent', (timeProgress * 100).toFixed(2));
+      this.#proteinMeter.nowTarget = Math.round(this.targetProtein * timeProgress);
     }
   }
 

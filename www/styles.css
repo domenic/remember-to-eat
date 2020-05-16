@@ -86,58 +86,14 @@ body {
   color: gray;
 }
 
-.nutrient meter {
-  --size: 180px;
-  --background-color: #ebeff0;
-  --optimal-background-color: #ddd;
-  --color: #3ccc71;
+/* nutrient-meter */
 
-  position: absolute;
-  top: 0;
-  left: calc(50% - var(--size) / 2);
-  z-index: -1;
-  appearance: none;
-  width: var(--size);
-  height: var(--size);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: conic-gradient(var(--optimal-background-color) calc(var(--optimum-percent) * 1%), 0, var(--background-color));
-  border-radius: 50%;
+nutrient-meter[name="Energy"] {
+  --full-color: #ff8a80;
 }
 
-#protein-meter.full {
-  --color: #1e88e5;
-}
-
-#energy-meter.full {
-  --color: #ff8a80;
-}
-
-.nutrient meter::before {
-  content: "";
-  background: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 94%;
-  width: 94%;
-  border-radius: 50%;
-}
-
-.nutrient meter[optimum]::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: calc(50% - var(--size) / 2);
-  z-index: -1;
-  width: var(--size);
-  height: var(--size);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: conic-gradient(var(--color) calc(var(--percent) * 1%), 0, transparent);
-  border-radius: 50%;
+nutrient-meter[name="Protein"] {
+  --full-color: #1e88e5;
 }
 
 /* #targets */
