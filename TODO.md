@@ -20,4 +20,8 @@
 
 - Dark mode!? (Forced white backgrounds are a problem, again.)
 - Mobile friendly.
-- Add a title or header or something.
+
+## Documentation
+
+- Expand the README
+- Expand `about.html`

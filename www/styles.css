@@ -5,7 +5,7 @@
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
   font-size: 16px;
 
-  --accent-color: #ee6e73;
+  --accent-color: #344955;
 }
 
 *,
@@ -14,15 +14,61 @@
   box-sizing: inherit;
 }
 
+a {
+  text-decoration: inherit;
+  color: inherit;
+}
+
 /* Main layout */
 
 body {
-  margin: 100px;
+  --horizontal-margin: 72px;
+  margin: 100px var(--horizontal-margin);
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-areas: "current targets"
                        "food food";
   grid-gap: 100px;
+}
+
+/* header */
+
+header {
+  --height: 56px;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: var(--height);
+  padding: 0 0 0 var(--horizontal-margin);
+  display: flex;
+  align-items: center;
+  font-size: 22px;
+  color: white;
+  background: var(--accent-color);
+  box-shadow: 0 4px 5px 0 rgba(0 0 0 / 0.14),
+              0 1px 10px 0 rgba(0 0 0 / 0.12),
+              0 2px 4px -1px rgba(0 0 0 / 0.2);
+}
+
+header > h1 {
+  margin: 0;
+  font-size: inherit;
+  font-weight: normal;
+  flex: 1;
+}
+
+header > a {
+  display: block;
+  width: var(--height);
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+header > a:hover {
+  color: #eee;
 }
 
 /* .panel */
