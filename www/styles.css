@@ -14,10 +14,6 @@
   box-sizing: inherit;
 }
 
-:root {
-  font-family: sans-serif;
-}
-
 /* Main layout */
 
 body {
@@ -112,4 +108,10 @@ nutrient-meter[name="Protein"] {
 
 #food {
   grid-area: food;
+  text-align: center;
+}
+
+#food food-button {
+  margin: 0 30px;
+  text-align: left;
 }

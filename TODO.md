@@ -18,7 +18,6 @@
 
 ## Styling
 
-- Style the buttons better. Challenge is how to make something clearly a button with a forced-white background.
 - Dark mode!? (Forced white backgrounds are a problem, again.)
 - Mobile friendly.
 - Add a title or header or something.

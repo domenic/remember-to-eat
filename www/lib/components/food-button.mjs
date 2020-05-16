@@ -1,23 +1,52 @@
 const sheet = new CSSStyleSheet();
 sheet.replaceSync(`
 button {
-  vertical-align: middle;
-  width: 400px;
-  height: 500px;
+  --padding: 16px;
+  --width: 400px;
+  width: var(--width);
+  padding: var(--padding);
   background: white;
-  border: 1px solid gray;
+  text-align: inherit;
+  font: inherit;
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+  box-shadow: 0 1px 1px 0 rgb(66 66 66 / 0.08),
+              0 1px 3px 1px rgb(66 66 66 / 0.16);
+}
+
+button:hover {
+  background: #fbfbfb;
 }
 
 img {
-  width: 300px;
+  --gradient-distance: 50px;
+  width: var(--width);
   height: 300px;
   object-fit: contain;
+  margin: calc(-1 * var(--padding)) calc(-1 * var(--padding)) 0 calc(-1 * var(--padding));
+  background: linear-gradient(to right,
+                              #eee,
+                              white var(--gradient-distance),
+                              white calc(var(--width) - var(--gradient-distance)),
+                              #eee);
+}
+
+#name {
+  font-weight: 500;
+  font-size: 1.25rem;
+  line-height: 2rem;
+  margin: 0;
 }
 
 #stats {
   list-style-type: none;
   margin: 0;
   padding: 0;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 400;
+  opacity: 0.6;
 }
 
 #stats > li {
