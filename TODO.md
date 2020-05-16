@@ -1,6 +1,5 @@
 ## Persistence
 
-- Persist targets
 - Persist a day's worth of entries
   - Allow undoing or resetting
   - Show a log of what has been logged so far
@@ -8,9 +7,7 @@
 
 ## Code
 
-- Refactor. `view-model.mjs` is pretty hairy.
-  - Preact + HTM?
-  - Some of the computations seem very "reactive"; maybe MobX?
+- Consider a real framework? E.g. Preact + HTM?
 - Write tests. The time logic is a good candidate.
 
 ## Features

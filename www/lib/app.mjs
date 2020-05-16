@@ -1,40 +1,52 @@
+import Targets from './targets.mjs';
 import computeTimeProgress from './time-progress.mjs';
+import storage from './kv-storage.mjs';
 
 const ONE_MINUTE = 60 * 1000;
 
 const energyMeter = document.querySelector('nutrient-meter[name="Energy"]');
 const proteinMeter = document.querySelector('nutrient-meter[name="Protein"]');
-const targetEnergy = document.querySelector('#target-energy');
-const targetProtein = document.querySelector('#target-protein');
-const wakeUpTime = document.querySelector('#wake-up-time');
-const sleepTime = document.querySelector('#sleep-time');
+const targets = new Targets('#target-energy', '#target-protein', '#wake-up-time', '#sleep-time');
 
-for (const button of document.querySelectorAll('food-button')) {
-  button.addEventListener('click', () => {
-    energyMeter.current += button.energy;
-    proteinMeter.current += button.protein;
+main();
+
+async function main() {
+  for (const button of document.querySelectorAll('food-button')) {
+    button.addEventListener('click', () => {
+      energyMeter.current += button.energy;
+      proteinMeter.current += button.protein;
+    });
+  }
+
+  targets.addEventListener('change', () => {
+    syncMeters();
+    save();
   });
+
+  await restore();
+
+  syncMeters();
+  setInterval(syncMeters, ONE_MINUTE);
 }
-
-targetEnergy.addEventListener('input', syncMeters);
-targetProtein.addEventListener('input', syncMeters);
-wakeUpTime.addEventListener('input', syncMeters);
-sleepTime.addEventListener('input', syncMeters);
-
-syncMeters();
-setInterval(syncMeters, ONE_MINUTE);
 
 function syncMeters() {
-  const timeProgress = getTimeProgress();
-  syncMeter(energyMeter, targetEnergy, timeProgress);
-  syncMeter(proteinMeter, targetProtein, timeProgress);
+  const timeProgress = computeTimeProgress(targets.wakeUpTime, targets.sleepTime);
+  syncMeter(energyMeter, targets.energy, timeProgress);
+  syncMeter(proteinMeter, targets.protein, timeProgress);
 }
 
-function syncMeter(meterEl, targetEl, timeProgress) {
-  meterEl.nowTarget = timeProgress ? Math.round(targetEl.valueAsNumber * timeProgress) : null;
-  meterEl.dayTarget = targetEl.valueAsNumber;
+function syncMeter(meterEl, target, timeProgress) {
+  meterEl.nowTarget = timeProgress ? Math.round(target * timeProgress) : null;
+  meterEl.dayTarget = target;
 }
 
-function getTimeProgress() {
-  return computeTimeProgress(wakeUpTime.valueAsDate, sleepTime.valueAsDate);
+async function save() {
+  await storage.set('targets', targets.serialization());
+}
+
+async function restore() {
+  const serialization = await storage.get('targets');
+  if (serialization) {
+    targets.restoreFromSerialization(serialization);
+  }
 }
