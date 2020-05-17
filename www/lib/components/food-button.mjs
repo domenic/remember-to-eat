@@ -1,8 +1,12 @@
 const sheet = new CSSStyleSheet();
 sheet.replaceSync(`
+:host {
+  display: inline-block;
+}
+
 button {
   --padding: 16px;
-  --width: 400px;
+  --width: 300px;
   width: var(--width);
   padding: var(--padding);
   background: white;
@@ -22,7 +26,7 @@ button:hover {
 img {
   --gradient-distance: 50px;
   width: var(--width);
-  height: 300px;
+  height: 200px;
   object-fit: contain;
   margin: calc(-1 * var(--padding)) calc(-1 * var(--padding)) 0 calc(-1 * var(--padding));
   background: linear-gradient(to right,

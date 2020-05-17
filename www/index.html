@@ -2,6 +2,7 @@
 <html lang="en">
 <meta charset="utf-8">
 <title>Remember to Eat</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link rel="stylesheet" href="styles.css">
 
 <script type="module" src="lib/components/nutrient-meter.mjs"></script>
@@ -14,44 +15,42 @@
   <a href="/about.html">?</a>
 </header>
 
-<div id="current" class="panel">
-  <h2>Today</h2>
+<div id="panels">
+  <div id="current" class="panel">
+    <h2>Today</h2>
 
-  <div class="container">
-    <nutrient-meter name="Energy" unit="kcal"></nutrient-meter>
-    <nutrient-meter name="Protein" unit="mg"></nutrient-meter>
+    <div class="container">
+      <nutrient-meter name="Energy" unit="kcal"></nutrient-meter>
+      <nutrient-meter name="Protein" unit="mg"></nutrient-meter>
+    </div>
   </div>
-</div>
 
-<div id="targets" class="panel">
-  <h2>Targets</h2>
+  <div id="targets" class="panel">
+    <h2>Targets</h2>
 
-  <div class="container">
-    <label class="nutrient">
-      <span class="label">Energy</span>
-      <span class="value">
-        <input class="number kcal" type="number" value="2000" id="target-energy">
+    <div class="container">
+      <label class="nutrient">
+        <span class="label">Energy</span>
+        <input type="number" value="2000" id="target-energy">
         <span class="unit">kcal</span>
-      </span>
-    </label>
+      </label>
 
-    <label class="nutrient">
-      <span class="label">Protein</span>
-      <span class="value">
-        <input class="number mg" type="number" value="160" id="target-protein">
+      <label class="nutrient">
+        <span class="label">Protein</span>
+        <input type="number" value="160" id="target-protein">
         <span class="unit">mg</span>
-      </span>
-    </label>
+      </label>
 
-    <label class="time">
-      Wake up
-      <input type="time" id="wake-up-time" value="09:00">
-    </label>
+      <label class="time">
+        Wake up
+        <input type="time" id="wake-up-time" value="09:00">
+      </label>
 
-    <label class="time">
-      Sleep
-      <input type="time" id="sleep-time" value="00:30">
-    </label>
+      <label class="time">
+        Sleep
+        <input type="time" id="sleep-time" value="00:30">
+      </label>
+    </div>
   </div>
 </div>
 

@@ -19,7 +19,8 @@
 ## Styling
 
 - Dark mode!? (Forced white backgrounds are a problem, again.)
-- Mobile friendly.
+- Mobile friendly (in particular making the food buttons show up elsewhere so that the app fits in a single screen).
+  - Maybe move targets to a tab or something. On desktop too?
 
 ## Documentation
 

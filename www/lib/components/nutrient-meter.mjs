@@ -1,10 +1,20 @@
 const sheet = new CSSStyleSheet();
 sheet.replaceSync(`
+:host {
+  display: inline-block;
+}
+
 #nutrient {
+  --size: 180px;
   display: grid;
   text-align: center;
   position: relative;
-  padding: 60px 40px;
+  width: var(--size);
+  height: var(--size);
+}
+
+#name {
+  align-self: end;
 }
 
 #number {
@@ -19,7 +29,6 @@ sheet.replaceSync(`
 }
 
 meter {
-  --size: 180px;
   --background-color: #ebeff0;
   --optimal-background-color: #ddd;
   --color: #3ccc71;

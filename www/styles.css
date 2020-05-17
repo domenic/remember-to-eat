@@ -25,10 +25,20 @@ body {
   --horizontal-margin: 72px;
   margin: 100px var(--horizontal-margin);
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-areas: "current targets"
-                       "food food";
-  grid-gap: 100px;
+  gap: 30px;
+}
+
+@media (max-width: 767px) {
+  body {
+    --horizontal-margin: 16px;
+  }
+}
+
+#panels {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, min(460px, 100%));
+  gap: 30px;
+  justify-content: space-evenly;
 }
 
 /* header */
@@ -39,6 +49,7 @@ header {
   left: 0;
   right: 0;
   top: 0;
+  z-index: 1;
   height: var(--height);
   padding: 0 0 0 var(--horizontal-margin);
   display: flex;
@@ -73,59 +84,23 @@ header > a:hover {
 
 /* .panel */
 .panel {
-  border: 1px solid var(--accent-color);
+  border: 1px solid #dadce0;
+  border-radius: 8px;
+  padding: 16px;
 }
 
 .panel h2 {
-  font-size: 3.56rem;
+  font-size: 1.5rem;
   font-weight: normal;
-  margin: 0 0 1.68rem 0;
+  margin: 0;
+  padding: 13px 0;
   text-align: center;
 }
 
 .panel .container {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-}
-
-/* #current */
-
-#current {
-  grid-area: current;
-}
-
-/* .nutrient */
-
-.nutrient {
-  display: grid;
-  text-align: center;
-  position: relative;
-  padding: 60px 40px;
-}
-
-.nutrient .number {
-  font-size: 2.92rem;
-  display: inline-block;
-  text-align: right;
-}
-
-.nutrient input[type="number"].number {
-  border: none;
-  border-bottom: 1px solid #9e9e9e;
-}
-
-/* TODO: maybe use a (non-ugly) fixed width font for these. The .2 is hacky and error-prone */
-.nutrient input[type="number"].number.kcal {
-  width: 5.2ch;
-}
-
-.nutrient input[type="number"].number.mg {
-  width: 4.2ch;
-}
-
-.nutrient .unit {
-  font-size: smaller;
-  color: gray;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* TODO: kind of lame to hard-code in 200px */
+  justify-items: center;
 }
 
 /* nutrient-meter */
@@ -138,10 +113,28 @@ nutrient-meter[name="Protein"] {
   --full-color: #1e88e5;
 }
 
-/* #targets */
+/* .nutrient */
 
-#targets {
-  grid-area: targets;
+.nutrient {
+  display: grid;
+  text-align: center;
+  position: relative;
+  padding: 40px 10px;
+}
+
+/* TODO: maybe use a (non-ugly) fixed width font for these. The .2 is hacky and error-prone */
+.nutrient input[type="number"] {
+  font-size: 2.92rem;
+  display: inline-block;
+  text-align: center;
+  border: none;
+  border-bottom: 1px solid #9e9e9e;
+  width: 5.2ch;
+}
+
+.nutrient .unit {
+  font-size: smaller;
+  color: gray;
 }
 
 /* .time */
@@ -153,11 +146,14 @@ nutrient-meter[name="Protein"] {
 /* #food */
 
 #food {
-  grid-area: food;
   text-align: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 300px);
+  gap: 30px;
+  justify-items: center;
+  justify-content: center;
 }
 
 #food food-button {
-  margin: 0 30px;
   text-align: left;
 }
