@@ -6,12 +6,21 @@
   "version": "1.0.0-pre",
   "author": "Domenic Denicola <d@domenic.me> (https://domenic.me/)",
   "license": "WTFPL",
+  "type": "module",
   "scripts": {
     "lint": "eslint \"www/**/*.mjs\"",
+    "test": "npx --node-arg=--experimental-vm-modules jest",
     "start": "serve www"
   },
+  "jest": {
+    "testEnvironment": "node",
+    "testMatch": ["**/__tests__/**/*.mjs"],
+    "moduleFileExtensions": ["js", "mjs"],
+    "transform": {}
+  },
   "devDependencies": {
-    "eslint": "^7.0.0"
+    "eslint": "^7.0.0",
+    "jest": "^26.0.1"
   },
   "dependencies": {
     "serve": "^11.3.0"
