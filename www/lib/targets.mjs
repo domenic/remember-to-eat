@@ -30,8 +30,9 @@ export default class Targets extends EventTarget {
   restoreFromSerialization(serialization) {
     this.#targetEnergy.valueAsNumber = serialization.energy;
     this.#targetProtein.valueAsNumber = serialization.protein;
-    this.#wakeUpTime.valueAsDate = new Date(serialization.wakeUpTime);
-    this.#sleepTime.valueAsDate = new Date(serialization.sleepTime);
+    this.#wakeUpTime.valueAsNumber = serialization.wakeUpTime;
+    this.#sleepTime.valueAsNumber = serialization.sleepTime;
+    this.#changed();
   }
 
   get energy() {
@@ -41,10 +42,10 @@ export default class Targets extends EventTarget {
     return this.#targetProtein.valueAsNumber;
   }
   get wakeUpTime() {
-    return Number(this.#wakeUpTime.valueAsDate);
+    return this.#wakeUpTime.valueAsNumber;
   }
   get sleepTime() {
-    return Number(this.#sleepTime.valueAsDate);
+    return this.#sleepTime.valueAsNumber;
   }
 
   #changed() {

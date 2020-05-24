@@ -9,11 +9,11 @@
   "type": "module",
   "scripts": {
     "lint": "eslint \"www/**/*.mjs\"",
-    "test": "npx --node-arg=--experimental-vm-modules jest",
+    "test": "npx --node-arg=--experimental-vm-modules --node-arg=--harmony-private-methods jest",
     "start": "serve www"
   },
   "jest": {
-    "testEnvironment": "node",
+    "testEnvironment": "jsdom",
     "testMatch": ["**/__tests__/**/*.mjs"],
     "moduleFileExtensions": ["js", "mjs"],
     "transform": {}
