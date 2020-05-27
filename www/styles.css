@@ -19,6 +19,10 @@ a {
   color: inherit;
 }
 
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+}
+
 /* Main layout */
 
 body {
@@ -63,7 +67,6 @@ header {
 }
 
 header > h1 {
-  margin: 0;
   font-size: inherit;
   font-weight: normal;
   flex: 1;
@@ -92,7 +95,6 @@ header > a:hover {
 .panel h2 {
   font-size: 1.5rem;
   font-weight: normal;
-  margin: 0;
   padding: 13px 0;
   text-align: center;
 }

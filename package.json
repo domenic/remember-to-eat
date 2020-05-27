@@ -1,8 +1,8 @@
 {
   "name": "remember-to-eat",
   "description": "My personal meal/calorie/protein tracker",
+  "repository": "domenic/remember-to-eat",
   "private": true,
-  "keywords": [],
   "version": "1.0.0-pre",
   "author": "Domenic Denicola <d@domenic.me> (https://domenic.me/)",
   "license": "WTFPL",
@@ -20,9 +20,7 @@
   },
   "devDependencies": {
     "eslint": "^7.0.0",
-    "jest": "^26.0.1"
-  },
-  "dependencies": {
-    "serve": "^11.3.0"
+    "jest": "^26.0.1",
+    "serve": "^11.3.1"
   }
 }
