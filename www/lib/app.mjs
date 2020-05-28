@@ -1,6 +1,6 @@
 import Targets from './targets.mjs';
 import computeTimeProgress from './time-progress.mjs';
-import storage from './kv-storage.mjs';
+import * as dataStore from './data-store.mjs';
 
 const ONE_MINUTE = 60 * 1000;
 
@@ -11,22 +11,36 @@ const targets = new Targets('#target-energy', '#target-protein', '#wake-up-time'
 main();
 
 async function main() {
+  await dataStore.initialize();
+  await loadData();
+
   for (const button of document.querySelectorAll('food-button')) {
     button.addEventListener('click', () => {
       energyMeter.current += button.energy;
       proteinMeter.current += button.protein;
+      dataStore.logEntryForToday({ name: button.name, energy: button.energy, protein: button.protein });
     });
   }
 
   targets.addEventListener('change', () => {
     syncMeters();
-    save();
+    dataStore.saveTargets(targets.serialization());
   });
-
-  await restore();
 
   syncMeters();
   setInterval(syncMeters, ONE_MINUTE);
+}
+
+async function loadData() {
+  const [todaysEntries, targetsSerialization] = await Promise.all([dataStore.getTodaysLog(), dataStore.getTargets()]);
+
+  for (const entry of todaysEntries) {
+    energyMeter.current += entry.energy;
+    proteinMeter.current += entry.protein;
+  }
+  if (targetsSerialization) {
+    targets.restoreFromSerialization(targetsSerialization);
+  }
 }
 
 function syncMeters() {
@@ -38,15 +52,4 @@ function syncMeters() {
 function syncMeter(meterEl, target, timeProgress) {
   meterEl.nowTarget = timeProgress ? Math.round(target * timeProgress) : null;
   meterEl.dayTarget = target;
-}
-
-async function save() {
-  await storage.set('targets', targets.serialization());
-}
-
-async function restore() {
-  const serialization = await storage.get('targets');
-  if (serialization) {
-    targets.restoreFromSerialization(serialization);
-  }
 }
