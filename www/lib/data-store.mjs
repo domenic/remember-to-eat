@@ -7,14 +7,23 @@ export async function initialize() {
   [logsDB, targetsDB] = await Promise.all([openLogsDB(), openTargetsDB()]);
 }
 
-export function getTodaysLog() {
-  const today = dateStringFromDayOffset(0);
-  return logsDB.getAll(today);
+export async function getTotals(startDate, endDate) {
+  const entries = await logsDB.getAll('logs', IDBKeyRange.bound(startDate, endDate));
+
+  let totalEnergy = 0;
+  let totalProtein = 0;
+  for (const { energy, protein } of entries) {
+    totalEnergy += energy;
+    totalProtein += protein;
+  }
+
+  return { energy: totalEnergy, protein: totalProtein };
 }
 
-export function logEntryForToday(entry) {
-  const today = dateStringFromDayOffset(0);
-  return logsDB.add(today, entry);
+export function addLogEntry(entry) {
+  const now = new Date();
+  const tzOffset = now.getTimezoneOffset();
+  return logsDB.add('logs', { ...entry, instant: now, tzOffset });
 }
 
 export function saveTargets(serialization) {
@@ -26,18 +35,9 @@ export function getTargets() {
 }
 
 function openLogsDB() {
-  const today = dateStringFromDayOffset(0);
-  return openDB('logs-by-day', today, {
+  return openDB('logs', 1, {
     upgrade(newDB) {
-      const daysToKeep = new Set([dateStringFromDayOffset(-1), today, dateStringFromDayOffset(1)]);
-      for (const store of newDB.objectStoreNames) {
-        if (!daysToKeep.has(store)) {
-          newDB.deleteObjectStore(store);
-        }
-      }
-      if (!newDB.objectStoreNames.contains(today)) {
-        newDB.createObjectStore(today, { autoIncrement: true });
-      }
+      newDB.createObjectStore('logs', { keyPath: 'instant' });
     }
   });
 }
@@ -48,11 +48,4 @@ function openTargetsDB() {
       newDB.createObjectStore('targets');
     }
   });
-}
-
-function dateStringFromDayOffset(offset) {
-  const date = new Date();
-  date.setHours(0, 0, 0, 0);
-  date.setDate(date.getDate() + offset);
-  return String(date.getFullYear() * 10000 + (date.getMonth() + 1) * 100 + date.getDate());
 }

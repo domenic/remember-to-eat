@@ -2,10 +2,9 @@
 
 ## Persistence
 
-- Persist a day's worth of entries
-  - Allow undoing or resetting
-  - Show a log of what has been logged so far
-- Reset with button? Reset automatically at midpoint between sleep and wakeup time?
+- Allow undoing or resetting. Undo in a toast?
+- Reset with button?
+- Maybe this should all be done in the meal history page.
 
 ## Code
 
@@ -22,6 +21,8 @@
 - Actual customization of buttons, with images, etc.
 - Help setting targets (e.g. from RDA, from "bro science" 1 mg/lb rule, from age/height/weight)
   - Pairs well with the idea of moving targets to another tab
+- Meal history page (with, e.g., day totals). Probably today should be expanded, others initially-collapsed.
+- Show energy/protein now-targets as numbers, not just on the progress bar.
 
 ## Styling
 
