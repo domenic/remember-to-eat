@@ -7,7 +7,7 @@
   "author": "Domenic Denicola <d@domenic.me> (https://domenic.me/)",
   "license": "WTFPL",
   "scripts": {
-    "lint": "eslint \"www/**/*.mjs\"",
+    "lint": "eslint --ext js --ext mjs .",
     "test": "karma start",
     "start": "serve www"
   },

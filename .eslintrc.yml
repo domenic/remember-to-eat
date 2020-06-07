@@ -2,9 +2,9 @@
 root: true
 env:
   es2020: true
-  browser: true
+  node: true
 parserOptions:
-  sourceType: module
+  sourceType: script
 globals:
   d3: readonly
 
@@ -148,7 +148,7 @@ rules:
   no-sync: off
 
   # Stylistic Issues
-  array-bracket-newline: [error, multiline: true]
+  array-bracket-newline: [error, consistent]
   array-bracket-spacing: [error, never]
   array-element-newline: off
   block-spacing: [error, always]
