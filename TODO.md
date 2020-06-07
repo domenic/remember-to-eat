@@ -22,7 +22,6 @@
 - Help setting targets (e.g. from RDA, from "bro science" 1 mg/lb rule, from age/height/weight)
   - Pairs well with the idea of moving targets to another tab
 - Meal history page (with, e.g., day totals). Probably today should be expanded, others initially-collapsed.
-- Show energy/protein now-targets as numbers, not just on the progress bar.
 
 ## Styling
 

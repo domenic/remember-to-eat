@@ -23,9 +23,14 @@ sheet.replaceSync(`
   text-align: right;
 }
 
-#unit {
+#now-target-number {
   font-size: smaller;
+}
+
+#unit {
   color: gray;
+  display: block;
+  font-size: larger;
 }
 
 meter {
@@ -85,6 +90,7 @@ meter::after {
 class NutrientMeterElement extends HTMLElement {
   #name;
   #number;
+  #nowTargetNumber;
   #unit;
   #meter;
 
@@ -97,6 +103,7 @@ class NutrientMeterElement extends HTMLElement {
         <span id="name"></span>
         <span>
           <span id="number">0</span>
+          <span id="out-of">/ <span id="now-target-number"></span></span>
           <span id="unit"></span>
         </span>
         <meter></meter>
@@ -106,6 +113,7 @@ class NutrientMeterElement extends HTMLElement {
 
     this.#name = shadowRoot.querySelector('#name');
     this.#number = shadowRoot.querySelector('#number');
+    this.#nowTargetNumber = shadowRoot.querySelector('#now-target-number');
     this.#unit = shadowRoot.querySelector('#unit');
     this.#meter = shadowRoot.querySelector('meter');
   }
@@ -156,8 +164,12 @@ class NutrientMeterElement extends HTMLElement {
         this.#unit.textContent = newValue;
         break;
       }
-      case 'daytarget':
+      case 'daytarget': {
+        this.#syncMeter();
+        break;
+      }
       case 'nowtarget': {
+        this.#nowTargetNumber.textContent = newValue;
         this.#syncMeter();
         break;
       }
