@@ -28,8 +28,15 @@ h1, h2, h3, h4, h5, h6 {
 body {
   --horizontal-margin: 72px;
   margin: 100px var(--horizontal-margin);
+}
+
+body.app > main {
   display: grid;
   gap: 30px;
+}
+
+body.about {
+  font-size: 20px;
 }
 
 @media (max-width: 767px) {

@@ -35,8 +35,3 @@
 
 - Make it a PWA. (Service worker, icon/logo, manifest, etc.)
 - Add a feature detection interstitial, perhaps with details in the about page.
-
-## Documentation
-
-- Expand the README
-- Expand `about.html`

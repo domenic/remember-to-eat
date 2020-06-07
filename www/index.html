@@ -9,67 +9,71 @@
 <script type="module" src="lib/components/food-button.mjs"></script>
 <script type="module" src="lib/app.mjs"></script>
 
+<body class="app">
+
 <header>
   <h1><a href="/">Remember to Eat</a></h1>
 
   <a href="/about.html">?</a>
 </header>
 
-<div id="panels">
-  <div id="current" class="panel">
-    <h2>Today</h2>
+<main>
+  <div id="panels">
+    <div id="current" class="panel">
+      <h2>Today</h2>
 
-    <div class="container">
-      <nutrient-meter name="Energy" unit="kcal"></nutrient-meter>
-      <nutrient-meter name="Protein" unit="mg"></nutrient-meter>
+      <div class="container">
+        <nutrient-meter name="Energy" unit="kcal"></nutrient-meter>
+        <nutrient-meter name="Protein" unit="mg"></nutrient-meter>
+      </div>
+    </div>
+
+    <div id="targets" class="panel">
+      <h2>Targets</h2>
+
+      <div class="container">
+        <label class="nutrient">
+          <span class="label">Energy</span>
+          <input type="number" value="2000" id="target-energy">
+          <span class="unit">kcal</span>
+        </label>
+
+        <label class="nutrient">
+          <span class="label">Protein</span>
+          <input type="number" value="160" id="target-protein">
+          <span class="unit">mg</span>
+        </label>
+
+        <label class="time">
+          Wake up
+          <input type="time" id="wake-up-time" value="09:00">
+        </label>
+
+        <label class="time">
+          Sleep
+          <input type="time" id="sleep-time" value="00:30">
+        </label>
+      </div>
     </div>
   </div>
 
-  <div id="targets" class="panel">
-    <h2>Targets</h2>
+  <div id="food">
+    <food-button imagesrc="images/soylent-original.jpg"
+                imagewidth="1500" imageheight="1500"
+                name="Soylent Original"
+                energy="400"
+                protein="20"></food-button>
 
-    <div class="container">
-      <label class="nutrient">
-        <span class="label">Energy</span>
-        <input type="number" value="2000" id="target-energy">
-        <span class="unit">kcal</span>
-      </label>
+    <food-button imagesrc="images/soylent-bridge.jpg"
+                imagewidth="1500" imageheight="1500"
+                name="Soylent Bridge"
+                energy="180"
+                protein="15"></food-button>
 
-      <label class="nutrient">
-        <span class="label">Protein</span>
-        <input type="number" value="160" id="target-protein">
-        <span class="unit">mg</span>
-      </label>
-
-      <label class="time">
-        Wake up
-        <input type="time" id="wake-up-time" value="09:00">
-      </label>
-
-      <label class="time">
-        Sleep
-        <input type="time" id="sleep-time" value="00:30">
-      </label>
-    </div>
+    <food-button imagesrc="images/pea-protein.jpg"
+                imagewidth="461" imageheight="697"
+                name="Pea Protein"
+                energy="120"
+                protein="24"></food-button>
   </div>
-</div>
-
-<div id="food">
-  <food-button imagesrc="images/soylent-original.jpg"
-               imagewidth="1500" imageheight="1500"
-               name="Soylent Original"
-               energy="400"
-               protein="20"></food-button>
-
-  <food-button imagesrc="images/soylent-bridge.jpg"
-               imagewidth="1500" imageheight="1500"
-               name="Soylent Bridge"
-               energy="180"
-               protein="15"></food-button>
-
-  <food-button imagesrc="images/pea-protein.jpg"
-               imagewidth="461" imageheight="697"
-               name="Pea Protein"
-               energy="120"
-               protein="24"></food-button>
-</div>
+</main>
