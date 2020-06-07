@@ -1,4 +1,4 @@
-import { openDB } from 'https://unpkg.com/idb?module';
+import { openDB, deleteDB } from 'https://unpkg.com/idb?module';
 
 export class TargetsStore {
   static #objectStore = 'targets';
@@ -18,6 +18,11 @@ export class TargetsStore {
   async get() {
     await this.#ensureDBOpened();
     return this.#db.get(TargetsStore.#objectStore, TargetsStore.#key);
+  }
+
+  async clear() {
+    await this.#db.close();
+    return deleteDB(this.#dbName);
   }
 
   async #ensureDBOpened() {
@@ -64,6 +69,11 @@ export class LogsStore {
     const now = new Date();
     const tzOffset = now.getTimezoneOffset();
     return this.#db.add(LogsStore.#objectStore, { ...entry, [LogsStore.#key]: now, tzOffset });
+  }
+
+  async clear() {
+    await this.#db.close();
+    return deleteDB(this.#dbName);
   }
 
   async #ensureDBOpened() {
