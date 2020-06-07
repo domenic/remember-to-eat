@@ -1,51 +1,80 @@
 import { openDB } from 'https://unpkg.com/idb?module';
 
-let logsDB;
-let targetsDB;
+export class TargetsStore {
+  static #objectStore = 'targets';
+  static #key = 'targets';
+  #dbName;
+  #db;
 
-export async function initialize() {
-  [logsDB, targetsDB] = await Promise.all([openLogsDB(), openTargetsDB()]);
-}
-
-export async function getTotals(startDate, endDate) {
-  const entries = await logsDB.getAll('logs', IDBKeyRange.bound(startDate, endDate));
-
-  let totalEnergy = 0;
-  let totalProtein = 0;
-  for (const { energy, protein } of entries) {
-    totalEnergy += energy;
-    totalProtein += protein;
+  constructor(dbName) {
+    this.#dbName = dbName;
   }
 
-  return { energy: totalEnergy, protein: totalProtein };
-}
+  async put(data) {
+    await this.#ensureDBOpened();
+    return this.#db.put(TargetsStore.#objectStore, data, TargetsStore.#key);
+  }
 
-export function addLogEntry(entry) {
-  const now = new Date();
-  const tzOffset = now.getTimezoneOffset();
-  return logsDB.add('logs', { ...entry, instant: now, tzOffset });
-}
+  async get() {
+    await this.#ensureDBOpened();
+    return this.#db.get(TargetsStore.#objectStore, TargetsStore.#key);
+  }
 
-export function saveTargets(serialization) {
-  return targetsDB.put('targets', serialization, 'targets');
-}
-
-export function getTargets() {
-  return targetsDB.get('targets', 'targets');
-}
-
-function openLogsDB() {
-  return openDB('logs', 1, {
-    upgrade(newDB) {
-      newDB.createObjectStore('logs', { keyPath: 'instant' });
+  async #ensureDBOpened() {
+    if (this.#db) {
+      return;
     }
-  });
+
+    this.#db = await openDB(this.#dbName, 1, {
+      upgrade(db) {
+        db.createObjectStore(TargetsStore.#objectStore);
+      }
+    });
+  }
 }
 
-function openTargetsDB() {
-  return openDB('targets', 1, {
-    upgrade(newDB) {
-      newDB.createObjectStore('targets');
+export class LogsStore {
+  static #objectStore = 'logs';
+  static #key = 'instant';
+  #dbName;
+  #db;
+
+  constructor(dbName) {
+    this.#dbName = dbName;
+  }
+
+  async getTotals(startDate, endDate) {
+    await this.#ensureDBOpened();
+
+    const entries = await this.#db.getAll(LogsStore.#objectStore, IDBKeyRange.bound(startDate, endDate));
+
+    let totalEnergy = 0;
+    let totalProtein = 0;
+    for (const { energy, protein } of entries) {
+      totalEnergy += energy;
+      totalProtein += protein;
     }
-  });
+
+    return { energy: totalEnergy, protein: totalProtein };
+  }
+
+  async addEntry(entry) {
+    await this.#ensureDBOpened();
+
+    const now = new Date();
+    const tzOffset = now.getTimezoneOffset();
+    return this.#db.add(LogsStore.#objectStore, { ...entry, [LogsStore.#key]: now, tzOffset });
+  }
+
+  async #ensureDBOpened() {
+    if (this.#db) {
+      return;
+    }
+
+    this.#db = await openDB(this.#dbName, 1, {
+      upgrade(db) {
+        db.createObjectStore(LogsStore.#objectStore, { keyPath: LogsStore.#key });
+      }
+    });
+  }
 }

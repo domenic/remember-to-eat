@@ -1,7 +1,11 @@
-import { jest } from '@jest/globals';
 import { progress, boundsOfToday } from '../www/lib/time.mjs';
+import fakeTimers from 'https://cdn.pika.dev/@sinonjs/fake-timers@^6.0.1';
 
-jest.useFakeTimers('modern');
+const clock = fakeTimers.install();
+
+afterAll(() => {
+  clock.uninstall();
+});
 
 describe('progress()', () => {
   describe('sleep before midnight', () => {
@@ -89,10 +93,10 @@ describe('progress()', () => {
   });
 
   function runTest({ description, wakeUp, sleep, now, expected }) {
-    test(description, () => {
+    it(description, () => {
       const wakeUpValueAsNumber = (new Date(wakeUp)).valueOf();
       const sleepValueAsNumber = (new Date(sleep)).valueOf();
-      jest.setSystemTime(new Date(now));
+      clock.setSystemTime(new Date(now));
 
       expect(progress(wakeUpValueAsNumber, sleepValueAsNumber)).toBe(expected);
     });
@@ -202,10 +206,10 @@ describe('boundsOfToday()', () => {
 
 
   function runTest({ description, wakeUp, sleep, now, expected }) {
-    test(description, () => {
+    it(description, () => {
       const wakeUpValueAsNumber = (new Date(wakeUp)).valueOf();
       const sleepValueAsNumber = (new Date(sleep)).valueOf();
-      jest.setSystemTime(new Date(now));
+      clock.setSystemTime(new Date(now));
 
       const expectedAsDates = expected.map(e => new Date(e));
       expect(boundsOfToday(wakeUpValueAsNumber, sleepValueAsNumber)).toEqual(expectedAsDates);

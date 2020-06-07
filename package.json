@@ -6,21 +6,17 @@
   "version": "1.0.0-pre",
   "author": "Domenic Denicola <d@domenic.me> (https://domenic.me/)",
   "license": "WTFPL",
-  "type": "module",
   "scripts": {
     "lint": "eslint \"www/**/*.mjs\"",
-    "test": "npx --node-arg=--experimental-vm-modules --node-arg=--harmony-private-methods jest",
+    "test": "karma start",
     "start": "serve www"
   },
-  "jest": {
-    "testEnvironment": "jsdom",
-    "testMatch": ["**/__tests__/**/*.mjs"],
-    "moduleFileExtensions": ["js", "mjs"],
-    "transform": {}
-  },
   "devDependencies": {
-    "eslint": "^7.0.0",
-    "jest": "^26.0.1",
-    "serve": "^11.3.1"
+    "eslint": "^7.2.0",
+    "jasmine-core": "^3.5.0",
+    "karma": "^5.0.9",
+    "karma-chrome-launcher": "^3.1.0",
+    "karma-jasmine": "^3.3.1",
+    "serve": "^11.3.2"
   }
 }
