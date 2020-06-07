@@ -35,6 +35,10 @@ body.app > main {
   gap: 30px;
 }
 
+body.app:not(.loaded) > main {
+  display: none;
+}
+
 body.about {
   font-size: 20px;
 }

@@ -29,7 +29,6 @@
 - Dark mode!? (Forced white backgrounds are a problem, again.)
 - Mobile friendly (in particular making the food buttons show up elsewhere so that the app fits in a single screen).
   - Maybe move targets to a tab or something. On desktop too?
-- Hide everything until the app is initialized. (Custom element definitions/styles loaded; IDB data read)
 
 ## Productionization
 

@@ -18,6 +18,8 @@ async function main() {
   await loadTargets();
   await setTotalsFromDataStoreAndTargets();
 
+  document.body.classList.add('loaded');
+
   for (const button of document.querySelectorAll('food-button')) {
     button.addEventListener('click', () => {
       energyMeter.current += button.energy;
