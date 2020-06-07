@@ -1,4 +1,4 @@
-import { openDB, deleteDB } from 'https://unpkg.com/idb?module';
+import { openDB, deleteDB } from 'https://unpkg.com/idb@5.0.4/build/esm/index.js';
 
 export class TargetsStore {
   static #objectStore = 'targets';

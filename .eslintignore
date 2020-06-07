@@ -1,1 +1,2 @@
-www/service-worker/
+/www/service-worker.*
+/www/workbox-*
