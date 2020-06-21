@@ -3,7 +3,7 @@
 module.exports = {
   globDirectory: 'www/',
   globPatterns: [
-    '**/*.{html,jpg,mjs,css}'
+    '**/*.{html,jpg,svg,mjs,css,webmanifest}'
   ],
   swDest: 'www/service-worker.js',
 

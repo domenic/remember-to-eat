@@ -1,0 +1,17 @@
+{
+  "name": "Remember to Eat",
+  "short_name": "RTE",
+  "start_url": ".",
+  "background_color": "white",
+  "theme_color": "#344955",
+  "display": "standalone",
+  "description": "A simple calories/protein tracker",
+  "icons": [
+    {
+      "src": "images/icon.svg",
+      "type": "image/svg+xml",
+      "purpose": "monochrome any maskable",
+      "sizes": "any"
+    }
+  ]
+}
