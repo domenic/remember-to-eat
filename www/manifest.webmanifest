@@ -12,6 +12,18 @@
       "type": "image/svg+xml",
       "purpose": "monochrome any maskable",
       "sizes": "any"
+    },
+    {
+      "src": "images/icon-192.png",
+      "type": "image/png",
+      "purpose": "monochrome any maskable",
+      "sizes": "192x192"
+    },
+    {
+      "src": "images/icon-512.png",
+      "type": "image/png",
+      "purpose": "monochrome any maskable",
+      "sizes": "512x512"
     }
   ]
 }

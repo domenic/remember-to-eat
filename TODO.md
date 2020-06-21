@@ -31,5 +31,4 @@
 
 ## Productionization
 
-- Generate PNG icons for Android. [pwa-asset-generator](https://www.npmjs.com/package/pwa-asset-generator) looks wel-maintained.
 - Add a feature detection interstitial, perhaps with details in the about page.
