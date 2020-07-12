@@ -20,7 +20,7 @@ async function main() {
 
   document.body.classList.add('loaded');
 
-  for (const button of document.querySelectorAll('food-button')) {
+  for (const button of document.querySelectorAll('food-button, custom-food-button')) {
     button.addEventListener('click', () => {
       energyMeter.current += button.energy;
       proteinMeter.current += button.protein;

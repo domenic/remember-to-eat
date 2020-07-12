@@ -167,6 +167,6 @@ nutrient-meter[name="Protein"] {
   justify-content: center;
 }
 
-#food food-button {
+#food > * {
   text-align: left;
 }

@@ -16,7 +16,6 @@
 
 ## Features
 
-- Custom entry (name/kcal/protein text fields)
 - Remember last custom entry? Seems like a good MVP.
 - Actual customization of buttons, with images, etc.
 - Help setting targets (e.g. from RDA, from "bro science" 1 mg/lb rule, from age/height/weight)
