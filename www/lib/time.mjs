@@ -37,7 +37,7 @@ export function boundsOfToday(wakeUpTimeValueAsNumber, sleepTimeValueAsNumber) {
 // Returns the number of milliseconds past midnight for the wake-up time and sleep time.
 function getTimeOffsets(wakeUpTimeValueAsNumber, sleepTimeValueAsNumber) {
   // Inputs are not in a valid state
-  if (!wakeUpTimeValueAsNumber || !sleepTimeValueAsNumber) {
+  if (wakeUpTimeValueAsNumber === null || sleepTimeValueAsNumber === null) {
     return null;
   }
 

@@ -154,6 +154,56 @@ describe('boundsOfToday()', () => {
     });
   });
 
+  describe('sleep at midnight', () => {
+    runTest({
+      description: 'now before first midpoint',
+      wakeUp: '1970-01-01T09:00Z',
+      sleep: '1970-01-01T00:00Z',
+      now: '2020-05-22T03:00',
+      expected: ['2020-05-21T04:30', '2020-05-22T04:30']
+    });
+
+    runTest({
+      description: 'now before wakeup',
+      wakeUp: '1970-01-01T09:00Z',
+      sleep: '1970-01-01T00:00Z',
+      now: '2020-05-22T07:00',
+      expected: ['2020-05-22T04:30', '2020-05-23T04:30']
+    });
+
+    runTest({
+      description: 'now = wakeUp',
+      wakeUp: '1970-01-01T09:00Z',
+      sleep: '1970-01-01T00:00Z',
+      now: '2020-05-22T09:00',
+      expected: ['2020-05-22T04:30', '2020-05-23T04:30']
+    });
+
+    runTest({
+      description: 'now between wakeUp and sleep',
+      wakeUp: '1970-01-01T09:00Z',
+      sleep: '1970-01-01T00:00Z',
+      now: '2020-05-22T11:00',
+      expected: ['2020-05-22T04:30', '2020-05-23T04:30']
+    });
+
+    runTest({
+      description: 'now = sleep',
+      wakeUp: '1970-01-01T09:00Z',
+      sleep: '1970-01-01T00:00Z',
+      now: '2020-05-23T00:00',
+      expected: ['2020-05-22T04:30', '2020-05-23T04:30']
+    });
+
+    runTest({
+      description: 'now after sleep',
+      wakeUp: '1970-01-01T09:00Z',
+      sleep: '1970-01-01T00:00Z',
+      now: '2020-05-23T01:30',
+      expected: ['2020-05-22T04:30', '2020-05-23T04:30']
+    });
+  });
+
   describe('sleep after midnight', () => {
     runTest({
       description: 'now before first midpoint',
