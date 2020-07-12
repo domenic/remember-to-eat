@@ -1,47 +1,9 @@
+import sharedSheet from './support/shared-food-button-styles.mjs';
+
 const sheet = new CSSStyleSheet();
 sheet.replaceSync(`
-:host {
-  display: inline-block;
-}
-
-button {
-  --padding: 16px;
-  --width: 300px;
-  width: var(--width);
-  padding: var(--padding);
-  background: white;
-  text-align: inherit;
-  font: inherit;
-  color: inherit;
-  border: none;
-  border-radius: 4px;
-  box-shadow: 0 1px 1px 0 rgb(66 66 66 / 0.08),
-              0 1px 3px 1px rgb(66 66 66 / 0.16);
-}
-
-button:not(:disabled) {
-  cursor: pointer;
-}
-
-button:not(:disabled):hover {
-  background: #fbfbfb;
-}
-
 #image {
-  --gradient-distance: 50px;
-  display: block;
-  display: grid;
-  place-items: center;
   font-size: 8rem;
-  width: var(--width);
-  height: 200px;
-  object-fit: contain;
-  margin: calc(-1 * var(--padding)) calc(-1 * var(--padding)) 0 calc(-1 * var(--padding));
-  background: linear-gradient(to right,
-                              #eee,
-                              white var(--gradient-distance),
-                              white calc(var(--width) - var(--gradient-distance)),
-                              #eee);
 }
 
 button:disabled #image {
@@ -53,37 +15,15 @@ input {
   background: inherit;
   border: none;
   border-bottom: 1px solid #9e9e9e;
+  outline: none;
+}
+
+input:focus {
+  border-bottom-color: black;
 }
 
 input[type="number"] {
-  width: 5.2ch;
-}
-
-#name {
-  font-weight: 500;
-  font-size: 1.25rem;
-  line-height: 2rem;
-  margin: 0;
-}
-
-#stats {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  font-size: 0.875rem;
-  line-height: 1.25rem;
-  font-weight: 400;
-  opacity: 0.6;
-}
-
-#stats > li {
-  display: inline;
-  margin: 0;
-  padding: 0;
-}
-
-#stats > li:not(:last-of-type)::after {
-  content: " / ";
+  width: 6ch;
 }
 `);
 
@@ -110,7 +50,7 @@ class CustomFoodButtonElement extends HTMLElement {
         </ul>
       </button>
     `.trim();
-    shadowRoot.adoptedStyleSheets = [sheet];
+    shadowRoot.adoptedStyleSheets = [sharedSheet, sheet];
 
     this.#button = shadowRoot.querySelector('button');
     this.#img = shadowRoot.querySelector('#image');

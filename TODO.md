@@ -13,8 +13,7 @@
   - Maybe make a mini-library (code generation library?) for reflected properties. Ehhh.
 - Explore snowpack if you end up wanting any dependencies.
 - Figure out a way to get linting actually working.
-- Share styles between `food-button` and `custom-food-button`.
-  - Probably should not have interactive children of a `<button>` in custom-food-button...
+- Probably should not have interactive children of a `<button>` in `<custom-food-button>`...
 
 ## Features
 
