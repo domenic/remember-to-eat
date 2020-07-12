@@ -13,11 +13,14 @@
   - Maybe make a mini-library (code generation library?) for reflected properties. Ehhh.
 - Explore snowpack if you end up wanting any dependencies.
 - Figure out a way to get linting actually working.
+- Share styles between `food-button` and `custom-food-button`.
+  - Probably should not have interactive children of a `<button>` in custom-food-button...
 
 ## Features
 
 - Remember last custom entry? Seems like a good MVP.
-- Actual customization of buttons, with images, etc.
+- Multiple custom food entries.
+- Removing the custom food image (resetting to the letter).
 - Help setting targets (e.g. from RDA, from "bro science" 1 mg/lb rule, from age/height/weight)
   - Pairs well with the idea of moving targets to another tab
 - Meal history page (with, e.g., day totals). Probably today should be expanded, others initially-collapsed.

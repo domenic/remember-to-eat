@@ -15,6 +15,8 @@ const targets = new Targets('#target-energy', '#target-protein', '#wake-up-time'
 main();
 
 async function main() {
+  disableDropping();
+
   await loadTargets();
   await setTotalsFromDataStoreAndTargets();
 
@@ -65,4 +67,16 @@ function syncMeters() {
 function syncMeter(meterEl, target, timeProgress) {
   meterEl.nowTarget = timeProgress ? Math.round(target * timeProgress) : null;
   meterEl.dayTarget = target;
+}
+
+// Disables dropping, except on the <custom-food-button>. This avoids near-misses causing the confusing experience of
+// opening the dropped file in the browser.
+function disableDropping() {
+  window.addEventListener('dragenter', e => e.preventDefault());
+  window.addEventListener('dragover', e => {
+    if (e.target.localName !== 'custom-food-button') {
+      e.preventDefault();
+      e.dataTransfer.dropEffect = 'none';
+    }
+  });
 }

@@ -27,7 +27,7 @@ button:not(:disabled):hover {
   background: #fbfbfb;
 }
 
-#placeholder-image {
+#image {
   --gradient-distance: 50px;
   display: block;
   display: grid;
@@ -44,7 +44,7 @@ button:not(:disabled):hover {
                               #eee);
 }
 
-button:disabled #placeholder-image {
+button:disabled #image {
   color: gray;
 }
 
@@ -87,6 +87,8 @@ input[type="number"] {
 }
 `);
 
+const imageTypes = new Set(["image/gif", "image/jpeg", "image/png", "image/svg+xml"]);
+
 class CustomFoodButtonElement extends HTMLElement {
   #button;
   #name;
@@ -100,7 +102,7 @@ class CustomFoodButtonElement extends HTMLElement {
     const shadowRoot = this.attachShadow({ mode: 'closed' });
     shadowRoot.innerHTML = `
       <button>
-        <span id="placeholder-image">?</span>
+        <div id="image">?</div>
         <input id="name" placeholder="Enter a name">
         <ul id="stats">
           <li><input type="number" min="0" placeholder="?"> <span class="unit">kcal</span></li>
@@ -111,7 +113,7 @@ class CustomFoodButtonElement extends HTMLElement {
     shadowRoot.adoptedStyleSheets = [sheet];
 
     this.#button = shadowRoot.querySelector('button');
-    this.#img = shadowRoot.querySelector('#placeholder-image');
+    this.#img = shadowRoot.querySelector('#image');
     this.#name = shadowRoot.querySelector('#name');
     [this.#energy, this.#protein] = shadowRoot.querySelectorAll('input[type="number"]');
 
@@ -130,6 +132,8 @@ class CustomFoodButtonElement extends HTMLElement {
         e.preventDefault();
       }
     });
+
+    this.#makeDropTarget();
   }
 
   get name() {
@@ -148,6 +152,50 @@ class CustomFoodButtonElement extends HTMLElement {
     const isValid = this.name && this.energy && this.protein;
     this.#button.disabled = !isValid;
   }
+
+  #makeDropTarget() {
+    this.addEventListener('dragenter', e => {
+      if (getImageFromDataTransfer(e.dataTransfer)) {
+        e.preventDefault();
+      }
+    });
+
+    this.addEventListener('dragover', e => {
+      e.dataTransfer.dropEffect = getImageFromDataTransfer(e.dataTransfer) ? 'copy' : 'none';
+      e.preventDefault();
+    });
+
+    this.addEventListener('drop', e => {
+      const item = getImageFromDataTransfer(e.dataTransfer);
+      if (item) {
+        const file = item.getAsFile();
+        this.#updateImage(file);
+        e.preventDefault();
+      }
+    });
+  }
+
+  #updateImage(file) {
+    const url = URL.createObjectURL(file);
+
+    const img = document.createElement('img');
+    img.alt = "";
+    img.src = url;
+    img.id = this.#img.id;
+    img.addEventListener('load', () => URL.revokeObjectURL(url));
+
+    this.#img.replaceWith(img);
+    this.#img = img;
+  }
+}
+
+function getImageFromDataTransfer(dataTransfer) {
+  for (const item of dataTransfer.items) {
+    if (imageTypes.has(item.type)) {
+      return item;
+    }
+  }
+  return null;
 }
 
 // Register and remove no-longer-necessary public properties
