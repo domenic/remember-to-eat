@@ -10,7 +10,9 @@
     "lint": "eslint --ext js --ext mjs .",
     "test": "karma start",
     "start": "serve www",
-    "build": "workbox generateSW workbox-config.js"
+    "build-sw": "workbox generateSW workbox-config.js",
+    "build-icons": "svpng --width 192 --height 192 --overwrite www/images/icon.svg www/images/icon-192.png && svpng --width 512 --height 512 --overwrite www/images/icon.svg www/images/icon-512.png",
+    "build": "yarn build-icons && yarn build-sw"
   },
   "devDependencies": {
     "eslint": "^7.2.0",
@@ -19,6 +21,7 @@
     "karma-chrome-launcher": "^3.1.0",
     "karma-jasmine": "^3.3.1",
     "serve": "^11.3.2",
+    "svpng": "^1.1.1",
     "workbox-cli": "^5.1.3"
   }
 }
