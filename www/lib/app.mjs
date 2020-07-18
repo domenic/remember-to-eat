@@ -10,7 +10,7 @@ const targetsStore = new TargetsStore('targets');
 
 const energyMeter = document.querySelector('nutrient-meter[name="Energy"]');
 const proteinMeter = document.querySelector('nutrient-meter[name="Protein"]');
-const targets = new Targets('#target-energy', '#target-protein', '#wake-up-time', '#sleep-time');
+const targets = new Targets('#target-energy', '#target-protein', '#wake-up-time', '#last-meal-time');
 
 main();
 
@@ -39,9 +39,9 @@ async function main() {
   syncMeters();
   setInterval(syncMeters, ONE_MINUTE);
 
-  // This will reset the totals when we cross over the "midpoint" between sleep and wake up times. Because this should
-  // be happening while the user is asleep, it's not important to be precise. Being precise would be annoying since
-  // we'd have to update the timer every time the wake up/sleep times change.
+  // This will reset the totals when we cross over the "midpoint" between last meal and wake up times. Because this
+  // should be happening while the user is asleep, it's not important to be precise. Being precise would be annoying
+  // since we'd have to update the timer every time the wake up/last meal times change.
   setInterval(setTotalsFromDataStoreAndTargets, ONE_HOUR);
 }
 
@@ -53,13 +53,13 @@ async function loadTargets() {
 }
 
 async function setTotalsFromDataStoreAndTargets() {
-  const totals = await logsStore.getTotals(...boundsOfToday(targets.wakeUpTime, targets.sleepTime));
+  const totals = await logsStore.getTotals(...boundsOfToday(targets.wakeUpTime, targets.lastMealTime));
   energyMeter.current = totals.energy;
   proteinMeter.current = totals.protein;
 }
 
 function syncMeters() {
-  const timeProgress = progress(targets.wakeUpTime, targets.sleepTime);
+  const timeProgress = progress(targets.wakeUpTime, targets.lastMealTime);
   syncMeter(energyMeter, targets.energy, timeProgress);
   syncMeter(proteinMeter, targets.protein, timeProgress);
 }

@@ -17,7 +17,13 @@ export class TargetsStore {
 
   async get() {
     await this.#ensureDBOpened();
-    return this.#db.get(TargetsStore.#objectStore, TargetsStore.#key);
+    const targets = await this.#db.get(TargetsStore.#objectStore, TargetsStore.#key);
+
+    // Data migration
+    if (targets && 'sleepTime' in targets) {
+      targets.lastMealTime = targets.sleepTime;
+      delete targets.sleepTime;
+    }
   }
 
   async clear() {

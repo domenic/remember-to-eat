@@ -2,20 +2,20 @@ export default class Targets extends EventTarget {
   #targetEnergy;
   #targetProtein;
   #wakeUpTime;
-  #sleepTime;
+  #lastMealTime;
 
-  constructor(targetEnergySelector, targetProteinSelector, wakeUpTimeSelector, sleepTimeSelector) {
+  constructor(targetEnergySelector, targetProteinSelector, wakeUpTimeSelector, lastMealTimeSelector) {
     super();
 
     this.#targetEnergy = document.querySelector(targetEnergySelector);
     this.#targetProtein = document.querySelector(targetProteinSelector);
     this.#wakeUpTime = document.querySelector(wakeUpTimeSelector);
-    this.#sleepTime = document.querySelector(sleepTimeSelector);
+    this.#lastMealTime = document.querySelector(lastMealTimeSelector);
 
     this.#targetEnergy.addEventListener('input', () => this.#changed());
     this.#targetProtein.addEventListener('input', () => this.#changed());
     this.#wakeUpTime.addEventListener('input', () => this.#changed());
-    this.#sleepTime.addEventListener('input', () => this.#changed());
+    this.#lastMealTime.addEventListener('input', () => this.#changed());
   }
 
   serialization() {
@@ -23,7 +23,7 @@ export default class Targets extends EventTarget {
       energy: this.energy,
       protein: this.protein,
       wakeUpTime: this.wakeUpTime,
-      sleepTime: this.sleepTime
+      lastMealTime: this.lastMealTime
     };
   }
 
@@ -31,7 +31,7 @@ export default class Targets extends EventTarget {
     this.#targetEnergy.valueAsNumber = serialization.energy;
     this.#targetProtein.valueAsNumber = serialization.protein;
     this.#wakeUpTime.valueAsNumber = serialization.wakeUpTime;
-    this.#sleepTime.valueAsNumber = serialization.sleepTime;
+    this.#lastMealTime.valueAsNumber = serialization.lastMealTime;
     this.#changed();
   }
 
@@ -44,8 +44,8 @@ export default class Targets extends EventTarget {
   get wakeUpTime() {
     return this.#wakeUpTime.valueAsNumber;
   }
-  get sleepTime() {
-    return this.#sleepTime.valueAsNumber;
+  get lastMealTime() {
+    return this.#lastMealTime.valueAsNumber;
   }
 
   #changed() {

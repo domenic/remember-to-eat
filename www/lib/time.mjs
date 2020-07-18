@@ -1,25 +1,25 @@
 const ONE_DAY = 24 * 60 * 60 * 1000;
 
-export function progress(wakeUpTimeValueAsNumber, sleepTimeValueAsNumber) {
-  const offsets = getTimeOffsets(wakeUpTimeValueAsNumber, sleepTimeValueAsNumber);
+export function progress(wakeUpTimeValueAsNumber, lastMealTimeValueAsNumber) {
+  const offsets = getTimeOffsets(wakeUpTimeValueAsNumber, lastMealTimeValueAsNumber);
   if (!offsets) {
     return null;
   }
 
   const nowOffset = getNowOffset(offsets.wakeUp);
 
-  return Math.min(1, (nowOffset - offsets.wakeUp) / (offsets.sleep - offsets.wakeUp));
+  return Math.min(1, (nowOffset - offsets.wakeUp) / (offsets.lastMeal - offsets.wakeUp));
 }
 
-// Returns a 24-hour period centered around "today" from one sleep/wakeup midpoint to the next.
-export function boundsOfToday(wakeUpTimeValueAsNumber, sleepTimeValueAsNumber) {
-  const offsets = getTimeOffsets(wakeUpTimeValueAsNumber, sleepTimeValueAsNumber);
+// Returns a 24-hour period centered around "today" from one lastMeal/wakeup midpoint to the next.
+export function boundsOfToday(wakeUpTimeValueAsNumber, lastMealTimeValueAsNumber) {
+  const offsets = getTimeOffsets(wakeUpTimeValueAsNumber, lastMealTimeValueAsNumber);
   if (!offsets) {
     return null;
   }
 
-  const msBetweenSleepAndWakeUp = positiveMod(offsets.wakeUp - offsets.sleep, ONE_DAY);
-  const midpointOffset = positiveMod(offsets.sleep + msBetweenSleepAndWakeUp / 2, ONE_DAY);
+  const msBetweenLastMealAndWakeUp = positiveMod(offsets.wakeUp - offsets.lastMeal, ONE_DAY);
+  const midpointOffset = positiveMod(offsets.lastMeal + msBetweenLastMealAndWakeUp / 2, ONE_DAY);
 
   const midnightDate = new Date();
   midnightDate.setHours(0, 0, 0, 0);
@@ -34,24 +34,24 @@ export function boundsOfToday(wakeUpTimeValueAsNumber, sleepTimeValueAsNumber) {
   return [midpoint, nextMidpoint];
 }
 
-// Returns the number of milliseconds past midnight for the wake-up time and sleep time.
-function getTimeOffsets(wakeUpTimeValueAsNumber, sleepTimeValueAsNumber) {
+// Returns the number of milliseconds past midnight for the wake-up time and lastMeal time.
+function getTimeOffsets(wakeUpTimeValueAsNumber, lastMealTimeValueAsNumber) {
   // Inputs are not in a valid state
-  if (wakeUpTimeValueAsNumber === null || sleepTimeValueAsNumber === null) {
+  if (wakeUpTimeValueAsNumber === null || lastMealTimeValueAsNumber === null) {
     return null;
   }
 
-  const adjustedSleepTimeValueAsNumber = sleepTimeValueAsNumber < wakeUpTimeValueAsNumber ?
-    sleepTimeValueAsNumber + ONE_DAY :
-    sleepTimeValueAsNumber;
+  const adjustedLastMealTimeValueAsNumber = lastMealTimeValueAsNumber < wakeUpTimeValueAsNumber ?
+    lastMealTimeValueAsNumber + ONE_DAY :
+    lastMealTimeValueAsNumber;
 
-  // Right now wakeUpDate and sleepDate are numbers representing milliseconds since midnight UTC
+  // Right now wakeUpDate and lastMealDate are numbers representing milliseconds since midnight UTC
   // on 1970-01-01, since valueAsDate uses 1970-01-01T:00:00:00Z as its base. We want to translate
-  // them to be milliseconds-since-midnight (potentially greater than 24 hours if the sleep time
-  // is less than the wake-up time, e.g. wake up at 09:00 sleep at 00:30).
+  // them to be milliseconds-since-midnight (potentially greater than 24 hours if the lastMeal time
+  // is less than the wake-up time, e.g. wake up at 09:00 lastMeal at 00:30).
 
   const epoch = (new Date(0)).valueOf();
-  return { wakeUp: wakeUpTimeValueAsNumber - epoch, sleep: adjustedSleepTimeValueAsNumber - epoch };
+  return { wakeUp: wakeUpTimeValueAsNumber - epoch, lastMeal: adjustedLastMealTimeValueAsNumber - epoch };
 }
 
 // Returns the number of milliseconds past midnight for the current time, assuming that if the
