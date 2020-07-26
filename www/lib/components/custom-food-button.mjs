@@ -45,8 +45,8 @@ class CustomFoodButtonElement extends HTMLElement {
         <div id="image">?</div>
         <input id="name" placeholder="Enter a name">
         <ul id="stats">
-          <li><input type="number" min="0" placeholder="?"> <span class="unit">kcal</span></li>
-          <li><input type="number" min="0" placeholder="?"> <span class="unit">g</span></li>
+          <li><label><input type="number" min="0" placeholder="?"> kcal</li>
+          <li><label><input type="number" min="0" placeholder="?"> g</label></li>
         </ul>
       </button>
     `.trim();
@@ -72,6 +72,12 @@ class CustomFoodButtonElement extends HTMLElement {
         e.preventDefault();
       }
     });
+
+    this.#button.addEventListener('click', e => {
+      if (e.target.localName === 'input' || e.target.localName === 'label') {
+        e.stopImmediatePropagation();
+      }
+    }, { capture: true });
 
     this.#makeDropTarget();
   }

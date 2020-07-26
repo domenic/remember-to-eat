@@ -15,8 +15,8 @@ class FoodButtonElement extends HTMLElement {
         <img id="image" alt="">
         <p id="name"></p>
         <ul id="stats">
-          <li><span class="number"></span> <span class="unit">kcal</span></li>
-          <li><span class="number"></span> <span class="unit">g</span></li>
+          <li><span class="number"></span> kcal</li>
+          <li><span class="number"></span> g</li>
         </ul>
       </button>
     `.trim();
