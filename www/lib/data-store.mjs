@@ -24,6 +24,8 @@ export class TargetsStore {
       targets.lastMealTime = targets.sleepTime;
       delete targets.sleepTime;
     }
+
+    return targets;
   }
 
   async clear() {

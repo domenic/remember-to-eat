@@ -12,7 +12,7 @@ describe('progress()', () => {
     runTest({
       description: 'now before wakeUp',
       wakeUp: '1970-01-01T09:00Z',
-      lastmeal: '1970-01-01T23:00Z',
+      lastMeal: '1970-01-01T23:00Z',
       now: '2020-05-22T07:00',
       expected: 1
     });
@@ -20,7 +20,7 @@ describe('progress()', () => {
     runTest({
       description: 'now = wakeUp',
       wakeUp: '1970-01-01T09:00Z',
-      lastmeal: '1970-01-01T23:00Z',
+      lastMeal: '1970-01-01T23:00Z',
       now: '2020-05-22T09:00',
       expected: 0
     });
@@ -28,7 +28,7 @@ describe('progress()', () => {
     runTest({
       description: 'now between wakeUp and lastMeal',
       wakeUp: '1970-01-01T09:00Z',
-      lastmeal: '1970-01-01T23:00Z',
+      lastMeal: '1970-01-01T23:00Z',
       now: '2020-05-22T11:00',
       expected: 2 / 14
     });
@@ -36,7 +36,7 @@ describe('progress()', () => {
     runTest({
       description: 'now = lastMeal',
       wakeUp: '1970-01-01T09:00Z',
-      lastmeal: '1970-01-01T23:00Z',
+      lastMeal: '1970-01-01T23:00Z',
       now: '2020-05-22T23:00',
       expected: 1
     });
@@ -44,7 +44,7 @@ describe('progress()', () => {
     runTest({
       description: 'now after lastMeal',
       wakeUp: '1970-01-01T09:00Z',
-      lastmeal: '1970-01-01T23:00Z',
+      lastMeal: '1970-01-01T23:00Z',
       now: '2020-05-22T23:30',
       expected: 1
     });
@@ -54,7 +54,7 @@ describe('progress()', () => {
     runTest({
       description: 'now before wakeup',
       wakeUp: '1970-01-01T09:00Z',
-      lastmeal: '1970-01-01T01:00Z',
+      lastMeal: '1970-01-01T01:00Z',
       now: '2020-05-22T07:00',
       expected: 1
     });
@@ -62,7 +62,7 @@ describe('progress()', () => {
     runTest({
       description: 'now = wakeUp',
       wakeUp: '1970-01-01T09:00Z',
-      lastmeal: '1970-01-01T01:00Z',
+      lastMeal: '1970-01-01T01:00Z',
       now: '2020-05-22T09:00',
       expected: 0
     });
@@ -70,7 +70,7 @@ describe('progress()', () => {
     runTest({
       description: 'now between wakeUp and lastMeal',
       wakeUp: '1970-01-01T09:00Z',
-      lastmeal: '1970-01-01T01:00Z',
+      lastMeal: '1970-01-01T01:00Z',
       now: '2020-05-22T11:00',
       expected: 2 / 16
     });
@@ -78,7 +78,7 @@ describe('progress()', () => {
     runTest({
       description: 'now = lastMeal',
       wakeUp: '1970-01-01T09:00Z',
-      lastmeal: '1970-01-01T01:00Z',
+      lastMeal: '1970-01-01T01:00Z',
       now: '2020-05-22T01:00',
       expected: 1
     });
@@ -86,7 +86,7 @@ describe('progress()', () => {
     runTest({
       description: 'now after lastMeal',
       wakeUp: '1970-01-01T09:00Z',
-      lastmeal: '1970-01-01T01:00Z',
+      lastMeal: '1970-01-01T01:00Z',
       now: '2020-05-22T01:30',
       expected: 1
     });
@@ -108,7 +108,7 @@ describe('boundsOfToday()', () => {
     runTest({
       description: 'now before first midpoint',
       wakeUp: '1970-01-01T09:00Z',
-      lastmeal: '1970-01-01T23:00Z',
+      lastMeal: '1970-01-01T23:00Z',
       now: '2020-05-22T03:00',
       expected: ['2020-05-21T04:00', '2020-05-22T04:00']
     });
@@ -116,7 +116,7 @@ describe('boundsOfToday()', () => {
     runTest({
       description: 'now before wakeUp',
       wakeUp: '1970-01-01T09:00Z',
-      lastmeal: '1970-01-01T23:00Z',
+      lastMeal: '1970-01-01T23:00Z',
       now: '2020-05-22T07:00',
       expected: ['2020-05-22T04:00', '2020-05-23T04:00']
     });
@@ -124,7 +124,7 @@ describe('boundsOfToday()', () => {
     runTest({
       description: 'now = wakeUp',
       wakeUp: '1970-01-01T09:00Z',
-      lastmeal: '1970-01-01T23:00Z',
+      lastMeal: '1970-01-01T23:00Z',
       now: '2020-05-22T09:00',
       expected: ['2020-05-22T04:00', '2020-05-23T04:00']
     });
@@ -132,7 +132,7 @@ describe('boundsOfToday()', () => {
     runTest({
       description: 'now between wakeUp and lastMeal',
       wakeUp: '1970-01-01T09:00Z',
-      lastmeal: '1970-01-01T23:00Z',
+      lastMeal: '1970-01-01T23:00Z',
       now: '2020-05-22T11:00',
       expected: ['2020-05-22T04:00', '2020-05-23T04:00']
     });
@@ -140,7 +140,7 @@ describe('boundsOfToday()', () => {
     runTest({
       description: 'now = lastMeal',
       wakeUp: '1970-01-01T09:00Z',
-      lastmeal: '1970-01-01T23:00Z',
+      lastMeal: '1970-01-01T23:00Z',
       now: '2020-05-22T23:00',
       expected: ['2020-05-22T04:00', '2020-05-23T04:00']
     });
@@ -148,7 +148,7 @@ describe('boundsOfToday()', () => {
     runTest({
       description: 'now after lastMeal',
       wakeUp: '1970-01-01T09:00Z',
-      lastmeal: '1970-01-01T23:00Z',
+      lastMeal: '1970-01-01T23:00Z',
       now: '2020-05-22T23:30',
       expected: ['2020-05-22T04:00', '2020-05-23T04:00']
     });
@@ -158,7 +158,7 @@ describe('boundsOfToday()', () => {
     runTest({
       description: 'now before first midpoint',
       wakeUp: '1970-01-01T09:00Z',
-      lastmeal: '1970-01-01T00:00Z',
+      lastMeal: '1970-01-01T00:00Z',
       now: '2020-05-22T03:00',
       expected: ['2020-05-21T04:30', '2020-05-22T04:30']
     });
@@ -166,7 +166,7 @@ describe('boundsOfToday()', () => {
     runTest({
       description: 'now before wakeup',
       wakeUp: '1970-01-01T09:00Z',
-      lastmeal: '1970-01-01T00:00Z',
+      lastMeal: '1970-01-01T00:00Z',
       now: '2020-05-22T07:00',
       expected: ['2020-05-22T04:30', '2020-05-23T04:30']
     });
@@ -174,7 +174,7 @@ describe('boundsOfToday()', () => {
     runTest({
       description: 'now = wakeUp',
       wakeUp: '1970-01-01T09:00Z',
-      lastmeal: '1970-01-01T00:00Z',
+      lastMeal: '1970-01-01T00:00Z',
       now: '2020-05-22T09:00',
       expected: ['2020-05-22T04:30', '2020-05-23T04:30']
     });
@@ -182,7 +182,7 @@ describe('boundsOfToday()', () => {
     runTest({
       description: 'now between wakeUp and lastMeal',
       wakeUp: '1970-01-01T09:00Z',
-      lastmeal: '1970-01-01T00:00Z',
+      lastMeal: '1970-01-01T00:00Z',
       now: '2020-05-22T11:00',
       expected: ['2020-05-22T04:30', '2020-05-23T04:30']
     });
@@ -190,7 +190,7 @@ describe('boundsOfToday()', () => {
     runTest({
       description: 'now = lastMeal',
       wakeUp: '1970-01-01T09:00Z',
-      lastmeal: '1970-01-01T00:00Z',
+      lastMeal: '1970-01-01T00:00Z',
       now: '2020-05-23T00:00',
       expected: ['2020-05-22T04:30', '2020-05-23T04:30']
     });
@@ -198,7 +198,7 @@ describe('boundsOfToday()', () => {
     runTest({
       description: 'now after lastMeal',
       wakeUp: '1970-01-01T09:00Z',
-      lastmeal: '1970-01-01T00:00Z',
+      lastMeal: '1970-01-01T00:00Z',
       now: '2020-05-23T01:30',
       expected: ['2020-05-22T04:30', '2020-05-23T04:30']
     });
@@ -208,7 +208,7 @@ describe('boundsOfToday()', () => {
     runTest({
       description: 'now before first midpoint',
       wakeUp: '1970-01-01T09:00Z',
-      lastmeal: '1970-01-01T01:00Z',
+      lastMeal: '1970-01-01T01:00Z',
       now: '2020-05-22T03:00',
       expected: ['2020-05-21T05:00', '2020-05-22T05:00']
     });
@@ -216,7 +216,7 @@ describe('boundsOfToday()', () => {
     runTest({
       description: 'now before wakeup',
       wakeUp: '1970-01-01T09:00Z',
-      lastmeal: '1970-01-01T01:00Z',
+      lastMeal: '1970-01-01T01:00Z',
       now: '2020-05-22T07:00',
       expected: ['2020-05-22T05:00', '2020-05-23T05:00']
     });
@@ -224,7 +224,7 @@ describe('boundsOfToday()', () => {
     runTest({
       description: 'now = wakeUp',
       wakeUp: '1970-01-01T09:00Z',
-      lastmeal: '1970-01-01T01:00Z',
+      lastMeal: '1970-01-01T01:00Z',
       now: '2020-05-22T09:00',
       expected: ['2020-05-22T05:00', '2020-05-23T05:00']
     });
@@ -232,7 +232,7 @@ describe('boundsOfToday()', () => {
     runTest({
       description: 'now between wakeUp and lastMeal',
       wakeUp: '1970-01-01T09:00Z',
-      lastmeal: '1970-01-01T01:00Z',
+      lastMeal: '1970-01-01T01:00Z',
       now: '2020-05-22T11:00',
       expected: ['2020-05-22T05:00', '2020-05-23T05:00']
     });
@@ -240,7 +240,7 @@ describe('boundsOfToday()', () => {
     runTest({
       description: 'now = lastMeal',
       wakeUp: '1970-01-01T09:00Z',
-      lastmeal: '1970-01-01T01:00Z',
+      lastMeal: '1970-01-01T01:00Z',
       now: '2020-05-23T01:00',
       expected: ['2020-05-22T05:00', '2020-05-23T05:00']
     });
@@ -248,7 +248,7 @@ describe('boundsOfToday()', () => {
     runTest({
       description: 'now after lastMeal',
       wakeUp: '1970-01-01T09:00Z',
-      lastmeal: '1970-01-01T01:00Z',
+      lastMeal: '1970-01-01T01:00Z',
       now: '2020-05-23T01:30',
       expected: ['2020-05-22T05:00', '2020-05-23T05:00']
     });
