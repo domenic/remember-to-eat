@@ -10,7 +10,7 @@ module.exports = config => {
     ],
     reporters: ['progress'],
     logLevel: config.LOG_WARN,
-    browsers: ['ChromeCanaryHeadless'],
+    browsers: ['ChromeHeadless'],
     singleRun: true,
     autoWatch: false,
     concurrency: Infinity
