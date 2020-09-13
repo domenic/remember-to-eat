@@ -1,0 +1,21 @@
+name: Test
+on:
+  pull_request:
+    branches:
+    - master
+  push:
+    branches:
+    - master
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: "*"
+      - run: yarn
+#      - run: yarn lint # Cannot pass yet due to ESLint not supporting private fields.
+      - run: yarn test
