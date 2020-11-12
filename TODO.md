@@ -20,7 +20,7 @@
 - Remember last custom entry? Seems like a good MVP.
 - Multiple custom food entries.
 - Removing the custom food image (resetting to the letter).
-- Help setting targets (e.g. from RDA, from "bro science" 1 mg/lb rule, from age/height/weight)
+- Help setting targets (e.g. from RDA, from "bro science" 1 g/lb rule, from age/height/weight)
   - Pairs well with the idea of moving targets to another tab
 - Meal history page (with, e.g., day totals). Probably today should be expanded, others initially-collapsed.
 
